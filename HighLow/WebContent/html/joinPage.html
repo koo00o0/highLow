@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<form action="/join" method="POST" id="joinform" >
+	<label>ID : <input type="text" name= "id" id="id" placeholder="ID를 입력해주세요"></label><br>
+	<input type="button" id="ID" onclick="check()" value="중복확인"><br>
+	<label>PW : <input type="text" name= "pw" id="pw" placeholder="pw를 입력해주세요"></label><br>
+	<label>PW2 : <input type="text" name= "pw2" id="pw2" placeholder="pw를 다시 입력해주세요"></label><br>
+	<label>NAME : <input type="text" name= "name" id="name" placeholder="이름을 입력해주세요"></label><br>
+	<input type="button"  id="joinLogin"  onclick="join()" value="회원가입">
+</form>
+<script>
+alert("123123455");
+function join() {
+	alert("들오롬??");
+	if($("#id").val()==""){
+		alert("id를 입력해주세요");
+		$("#id").focus();
+		return;
+	}
+	if($("#pw").val()==""){
+		alert("pw를 입력해주세요");
+		$("#pw").focus();
+		return;
+	}
+	if($("#pw2").val()==""){
+		alert("pw를 입력해주세요");
+		$("#pw2").focus();
+		return;
+	}
+	if($("#name").val()==""){
+		alert("이름를 입력해주세요");
+		$("#pw").focus();
+		return;
+		
+	}
+	if($("#pw2").val()!=$("#pw").val()){
+		alert("비밀번호가 서로 다릅니다");
+		$("#pw").focus();
+		return;
+	}
+	$.ajax({
+		dataType : "text",
+		type : "POST",
+		url :"/join",
+		data : {
+			"cmd" : "join",
+			"ID" : $("#id").val(),
+			"PW" :$("#pw").val(),
+			"NAME" : $("#name").val(),
+		},success:function (result){
+			console.log(result);
+			if(result=="T"){
+				alert("회원가입 성공");
+				location.href = "/html/LoginPage.html"
+			}else {			
+				alert("회원가입 실패");
+			}			
+		}
+	})
+}
+function check() {
+	alert("123123")
+	if($("#id").val()==""){
+		alert("id를 입력해주세요");
+		$("#id").focus();
+		return;
+	}
+	$.ajax({
+		dataType : "text",
+		url : "/join",
+		type : "POST",
+		data : {
+			"cmd" : "check",
+			"ID" :$("#id").val(),
+		},success : function (result) {
+			console.log(result);
+			if(result == "T"){
+				alert("사용할수 있는 아이디 입니다");
+			}else {
+				alert("중복된 아이디 입니다.");
+			}
+		}
+	})
+}
+
+</script>
+</body>
+
+</html>

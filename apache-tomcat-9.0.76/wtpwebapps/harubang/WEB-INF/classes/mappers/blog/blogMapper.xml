@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.harubang.blog.BlogMapper">
+
+
+	
+	<!--  블로그 쓴 거 저장-->
+	<insert id="submitBlog">
+		INSERT INTO HB_BLOG(ID,WRITEDATE,PRIVATEWRITE,TITLE,BCONTENT,BIMGPATH)
+		VALUES (#{id}, #{writedate}, #{privatewrite}, #{title}, #{bcontent}, #{bimgpath})
+	</insert> 
+	
+	<!-- 블로그 쓴 거 수정 -->
+	<select id="editBlog" 
+	resultType="com.project.harubang.blog.BlogVO">
+		SELECT * FROM HB_BLOG WHERE seq = #{seq}
+	</select>
+	
+	<!-- 블로그 수정 저장 -->
+	<update id="editSubmitBlog">
+		UPDATE HB_BLOG SET TITLE=#{title}, BCONTENT=#{bcontent}, BIMGPATH=#{bimgpath} Where SEQ=#{seq}
+	</update>
+	
+	<!-- 블로그 쓴 거 불러오기 -->
+	<select id="selectBlog"
+	resultType="com.project.harubang.blog.BlogVO">
+		SELECT * FROM HB_BLOG(ID,WRITEDATE,PRIVATEWRITE,TITLE,BCONTENT,BIMGPATH,FIXWRITE)
+		VALUES (#{id}, #{writedate}, #{privatewrite}, #{title}, #{bcontent}, #{bimgpath},#{fixwrite))
+	</select>
+	
+	<!-- 블로그 목록 -->
+	<select id="getList"
+	resultType="com.project.harubang.blog.BlogVO">
+		SELECT * FROM HB_BLOG
+	</select>
+	
+	<select id="getInfoPage"
+	resultType="com.project.harubang.blog.BlogVO">
+		SELECT * FROM HB_BLOG WHERE seq = #{seq}
+	</select>
+	
+	<delete id="deleteBlog">
+		DELETE FROM HB_BLOG WHERE seq = #{seq}
+	</delete>
+	
+</mapper>

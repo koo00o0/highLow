@@ -1,0 +1,359 @@
+@charset "utf-8";
+
+.sectionWrap{
+    height: 92vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Noto Serif KR', serif;
+    position: relative;
+    z-index: 0;
+}
+
+.sectionWrap .itemWrap{
+    width: 20%;
+    height: 100%;
+}
+
+.sectionWrap .infoWrap{
+    width: 20%;
+    height: 100%;
+}
+
+.sectionWrap .mapWrap{
+    width: 60%;
+    height: 100%;
+}
+
+
+/* sectionWrap itemWrap */
+.itemWrap .scheduleWrap{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* .itemWrap .scheduleWrap p{
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #DB0000;
+} */
+
+.itemWrap .scheduleWrap input{
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    margin: 10px;
+    font-family: 'Noto Serif KR', serif;
+    border: none;
+}
+
+
+.itemWrap .textWrap{
+    text-align: center;
+    margin: 0 10px;
+    background-color: #EEC06C;
+    color: white;
+    margin-bottom: 5px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+.itemWrap .selectWrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemWrap .selectWrap select{
+    margin: 0 10px;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    font-family: 'Noto Serif KR', serif;
+    border: none;
+}
+
+.itemWrap .menuWrap ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;    
+}
+
+.itemWrap .menuWrap ul li{
+    flex-grow: 1;
+    margin: 0 10px;
+    height: 40px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.itemWrap .menuWrap ul li.active{
+    border-bottom: 2px solid #EEC06C;
+}
+
+/* scroll Wrap Item */
+.scrollWrap{
+    height: 700px;
+    overflow: auto;
+    margin-top: 10px;
+}
+
+.scrollWrap::-webkit-scrollbar {
+    width: 5px;  /* 스크롤바의 너비 */
+}
+
+.scrollWrap::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #EEC06C; /* 스크롤바의 색상 */
+    
+    border-radius: 5px;
+}
+
+.scrollWrap::-webkit-scrollbar-track {
+    background: rgba(100, 100, 111, 0.2);  /*스크롤바 뒷 배경 색상*/
+}
+
+.scrollWrap .scrollItem{
+    height: 80px;
+    margin: 10px 10px;
+    display: flex;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 4px 0px;
+    position: relative;
+     cursor: pointer;
+}
+
+/* .scrollWrap .scrollItem .cancle{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+.scrollWrap .scrollItem .cancle img{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+} */
+
+.scrollWrap .scrollItem .add{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+.scrollWrap .scrollItem .add img{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+}
+
+.scrollItem .imgItem img{
+    display: block;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.scrollItem .textItem{
+    padding: 10px 0;
+}
+
+
+/* scrollItemAdd  */
+.scrollWrapAdd{
+    height: 480px;
+    overflow: auto;
+    margin-top: 10px;
+}
+
+.scrollWrapAdd::-webkit-scrollbar {
+    width: 5px;  /* 스크롤바의 너비 */
+}
+
+.scrollWrapAdd::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #EEC06C; /* 스크롤바의 색상 */
+    
+    border-radius: 5px;
+}
+
+.scrollWrapAdd::-webkit-scrollbar-track {
+    background: rgba(100, 100, 111, 0.2);  /*스크롤바 뒷 배경 색상*/
+}
+
+.scrollWrapAdd .scrollItemAdd{
+    height: 80px;
+    margin: 10px 10px;
+    display: flex;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 4px 0px;
+    position: relative;
+}
+
+.scrollWrapAdd .scrollItemAdd .cancle{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+.scrollWrapAdd .scrollItemAdd .cancle img{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+}
+
+.scrollWrapAdd .scrollItemAdd .add{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+.scrollWrapAdd .scrollItemAdd .add img{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+}
+
+.scrollItemAdd .imgItem img{
+    display: block;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.scrollItemAdd .textItem{
+    padding: 10px 0;
+}
+
+
+/* infoWrap */
+.infoWrap .searchWrap{
+    width: 100%;
+    /* margin: 0 10px; */
+    /* background-color: #EEC06C; */
+    padding: 10px;
+    position: relative;
+}
+
+
+.infoWrap .searchWrap input.searchInput{
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 4px 0px;
+
+}
+
+.infoWrap .searchWrap img{
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    top:15px;
+    right: 15px;
+}
+
+.infoWrap .menuWrap ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;    
+    margin: 0 10px;
+}
+
+.infoWrap .menuWrap ul li{
+    width: calc(100%/3);
+    /* margin: 0 10px; */
+    height: 40px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.infoWrap .menuWrap ul li.active{
+    color: white;
+    background-color: #EEC06C;
+}
+
+/* info all item wrap */
+.scrollWrap .scrollAllItem{
+    height: 80px;
+    margin: 10px 10px;
+    display: flex;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 4px 0px;
+    position: relative;
+     cursor: pointer;
+}
+
+.scrollWrap .scrollAllItem .add{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+.scrollWrap .scrollAllItem .add img{
+    display: block;
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+}
+
+.scrollAllItem .imgItem img{
+    display: block;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.scrollAllItem .textItem{
+    padding: 10px 0;
+}

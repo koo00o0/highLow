@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+.top{
+    background:white;
+    width: 100vw;
+    height: 8vh;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    font-family: 'Noto Serif KR', serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 9999;
+}
+
+.logoWrap h1 a .logo{
+    padding: 6px 10px;
+    margin-top: 10px;
+    display: block;
+    height: 65px;
+    object-fit: cover;
+    margin-left: 20px;
+}
+
+.buttonWrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonWrap .userIdWrap{
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.buttonWrap input{
+    width: 70px;
+    margin: 0 10px;
+    height: 35px;
+    font-family: 'Noto Serif KR', serif;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttonWrap input.saveInput{
+    background-color: #eec06c;
+    color: white;
+    border: none;
+}
+
+.buttonWrap input.cancleInput{
+    background-color: white;
+    border: 1px solid #e2e2e2;
+    
+}

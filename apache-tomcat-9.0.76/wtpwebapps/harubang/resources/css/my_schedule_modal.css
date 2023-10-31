@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+p{
+    font-size: 14px;
+}
+
+inpur{
+	 font-family: 'Noto Serif KR', serif;
+}
+.addScheduleWrap{
+    font-family: 'Noto Serif KR', serif;
+    display: none;
+    width: 100%;
+    height: 100%;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    top:50%; 
+    left:50%;
+    transform: translate(-50%,-50%);
+    z-index: 9999;
+
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+}
+
+.addScheduleWrap .addScheduleBox{
+    width: 350px;
+    height: 500px;
+    background-color: white;
+    /* position: relative;
+    display: flex;
+    justify-content: space-between; */
+}
+
+.addScheduleBox .imageWrap{
+    width: 100%;
+    height: 30%;
+    /* padding: 30px 30px 0 30px; */
+}
+
+.addScheduleBox .imageWrap img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.addScheduleBox .textWrap{
+    width: 100%;
+    height: 40%;
+    padding: 20px;
+}
+
+.addScheduleBox input{
+    width: 100%;
+    height: 35px;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 0 10px
+}
+
+.addScheduleBox .textWrap .timeWrap{
+    display: flex;
+    justify-content: space-between;
+}
+
+.addScheduleBox .timeWrap .startWrap{
+    margin-right : 4px;
+    width: 100%;
+}
+
+.addScheduleBox .timeWrap .endWrap{
+    margin-left : 4px;
+    width: 100%;
+}
+
+.addScheduleBox .buttonWrap{
+    width: 100%;
+    height: 30%;
+    padding: 20px;
+    margin-top: 5px;
+   /*  display: flex;
+    justify-content: space-between;
+    flex-direction: column; */
+}
+
+.addScheduleBox .buttonWrap .saveButton{
+    border: none;
+    font-size: 14px;
+    color: white;
+    background-color: #EEC06C;
+    font-weight: 600;
+    width: 100%;
+    height: 40px;
+}
+
+.addScheduleBox .buttonWrap .cancelButton{
+	border: none;
+    font-size: 14px;
+    /* color: white; */
+    /* background-color: #EEC06C; */
+    font-weight: 600;
+    width: 100%;
+    height: 40px;
+}

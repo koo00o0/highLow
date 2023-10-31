@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> ::: CASINO 회원가입 ::: </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" type="text/javascript" ></script>
+<script>
+
+	function join() {
+		if($('#ID').val()==""){
+			$('#ID').focus();
+			alert("id를 입력해주세요");
+			return;
+		}
+		
+		if($('#PW').val()==""){
+			$('#PW').focus();
+			alert("PW를 입력해주세요");
+			return;
+		}
+		
+		if($('#PW2').val()==""){
+			$('#PW2').focus();
+			alert("PW를 입력해주세요");
+			return;
+		}
+		
+		if($('#PW').val()!=$('#PW2').val()){
+			$('#PW').focus();
+			alert("PW가 서로 다릅니다.");
+			return;
+		}
+		
+		if($('#NAME').val()==""){
+			$('#NAME').focus();
+			alert("이름을 입력해주세요");
+			return;
+		}
+		$('#joinForm').submit();
+
+	}
+
+	function check() {
+		$.ajax({
+			dataType : 'text',
+			type : 'POST',
+			url : '/joinUser',
+			data : {
+				'ID' : $('#ID').val(),
+				"CHECK" : "CHECK"
+			},
+			success : function(result) {
+				if (result == "F") {
+					alert("중복된 아이디 입니다.")
+				} else{
+					alert("사용가능한 아이디 입니다.")
+				}
+			}
+		})
+	}
+</script>
+</head>
+<body>
+	<h1 >회원가입</h1>
+	<form action="/joinUser" id="joinForm" method="POST">
+		<label>ID : <input type="text" name="ID" id="ID" placeholder="ID 를 입력해주세요."></label><br />
+		<input type="button" value="중복확인" onclick="check()">
+		<label>PW : <input type="password" name="PW" id="PW" placeholder="PW 를 입력해주세요."></label><br />
+		<label>PW2 : <input type="password" name="PW2" id="PW2" placeholder="PW 를 입력해주세요."></label><br />
+		<label>Name : <input type="text" name="NAME" id="NAME" placeholder="이름을 입력해주세요."></label><br />
+		<input type="button" value="회원가입" onclick="join()">
+	</form>
+</body>
+</html>

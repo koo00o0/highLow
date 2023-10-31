@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" type="text/javascript" ></script>
+		<style>
+    *{margin: 0;padding: 0;box-sizing: border-box;}
+
+	body{
+	    background-color: black;
+	    color: white;
+	    font-weight: bold;
+	}
+	
+	
+	.gameBox{
+	    width: 800px;
+	    height: 600px;
+	    border: 5px solid white;
+	    margin: 80px auto;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    padding: 0 150px;
+	}
+	
+	.topName{
+	    width: 500px;
+	    border-bottom: 3px solid white;
+	    text-align: center;
+	    padding: 30px 0;
+	    font-size: 30px;
+	}
+	.numBox{
+	    text-align: center;
+	    font-size: 80px;
+	    margin-top: 50px;
+	    margin-bottom: 50px;
+	    padding-bottom: 55px;
+	    border-bottom: 3px solid white;
+	    width: 500px;
+	}
+	.box{
+	    padding: 20px;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    border: 2px solid white;
+	    width: 500px;
+	}
+	.box div:first-child{
+	    margin-bottom: 20px;
+	}
+	
+	.box .inputBox{
+	    width: 200px;
+	    display: flex;
+	    justify-content: space-between;
+	    box-shadow: 0 0 10px white;
+	}
+	
+	.inputBox .input1{
+	    width: 130px;
+	    text-align: center;
+	    border: 0 none;
+	    background-color: transparent;
+	    color: white;
+	}
+	.inputBox .btn1{
+	    width: 70px;
+	    height: 30px;
+	    background-color: red;
+	    border: 0 none;
+	    cursor: pointer;
+	    color: white;
+	    font-weight: bold;
+	}
+	
+	.bottom{
+	    display: flex;
+	    justify-content: space-between;
+	    width: 500px;
+	    margin-top: 20px;
+	}
+	
+	.bottom div{
+	    border: 3px solid rgb(196, 179, 179);
+	    background-color: azure;
+	    color: rgb(252, 0, 0);
+	    padding: 20px;
+	    border-radius: 30px;
+	}
+    </style>
+	<script>
+	function gameTry() {
+		alert("들어왔어??")
+		
+		if($("#inputNum").val()==""){
+			$("#inputNum").focus();
+			alert("굳")
+			return;
+		}
+		
+			$.ajax({
+				dataType : 'text',
+				type : 'POST',
+				url : '/highLow',
+				data :{
+					"inputNum" : $("#inputNum").val(),
+					"startNum" : $("#startNum").text(),
+					"endNum"   : $("#endNum").text(),
+					"gameCount" : $("#gameCount").val()
+				}
+			,success:function (result) {
+				result = result.split("^");
+				 $("#gameCount").val(result[0]);
+				 $("#startNum").text(result[1]);
+				 $("#endNum").text(result[2]);
+				 $("#showChance").text(5-(result[0]));
+				 alert(result[3]);
+				 $("#inputNum").val("");
+				 $("#inputNum").focus;
+			  },
+			  error : function (e) {
+				  alert(e);
+		      }
+		})
+	}
+	function enterKey(e) {
+		if(e.KeyCode == 13){
+			gameTry();
+		}
+	}
+	
+	</script>
+
+</head>
+<body>
+    <div class="gameBox">
+        <div class="topName">HighLow</div>
+        <div class="numBox">
+        	<input type="hidden" id="gameCount" value="0">
+        	<span id="startNum">1</span>
+        	<span>~</span>
+        	<span id="endNum">100</span>
+        </div>
+        <div class="box">
+            <div>범위안의 숫자를 입력해주세요.</div>
+            <div class="inputBox">
+                <input type="text" placeholder="1~100" id="inputNum" class="input1" onkeyUp="enterKey(event)" >
+                <input type="button" value="입력" class="btn1" onClick="gameTry()" >
+            </div>
+        </div>
+        <div class="bottom">
+            <div>남은기회 : <span id="showChance">5<span>번</div>
+            <div>배율 : 5배</div>
+        </div>
+    </div>
+</body>
+</html>

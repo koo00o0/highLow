@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" type="text/javascript" ></script>
+
+<script>
+function check(){
+	if($('#ID').val()==""){
+		alert('아이디를 입력해주세요.')
+		$('#ID').focus()
+		return;
+	}
+	$.ajax({
+		dataType : 'text'
+		,url :'/adminPage'
+		,type : 'POST'
+		,data : {
+			"ID" : $('#ID').val(),
+			"CHECK" : "IDCHECK"
+		}
+		,success : function(result){
+			result = result.split("^");
+			if(result[0]=="T"){
+				alert('유저의 이름은'+result[1]+"입니다")
+			}else{
+				alert('존재하지 않는 아이디입니다.')
+			}
+		},error :function(e){
+			alert(e)
+		}
+	})
+}
+
+function manicheck(){
+	if($('#mani').val()==""){
+		alert('yes/on를 입력해주세요.')
+		$('#mani').focus()
+		return;
+	}
+	$.ajax({
+		dataType : 'text'
+		,url :'/adminPage'
+		,type : 'POST'
+		,data : {
+			"MANI" : $('#mani').val(),
+			"ID" : $('#ID').val(),
+			"CHECK" : "MANICHECK"
+		}
+		,success : function(result){
+			result = result.split("^");
+			if(result[0]=="T"){
+				alert("유저["+result[1]+"]의 승률조작모드가 켜졌습니다.")
+			}else if(result[0]=="F"){
+				alert("유저["+result[1]+"]의 승률조작모드가 꺼졌습니다.")
+			}else{
+				alert('오류오류오류')
+			}
+		},error :function(e){
+			alert(e)
+		}
+	})
+}
+
+function save(){
+	if($('#ID').val()==""){
+		alert('아이디를 입력해주세요.')
+		$('#ID').focus()
+		return;
+	}
+	if($('#mani').val()==""){
+		alert('yes/no를 입력해주세요.')
+		$('#mani').focus()
+		return;
+	}
+	$.ajax({
+		dataType : 'text'
+		,url :'/adminPage'
+		,type : 'POST'
+		,data : {
+			"ID" : $('#ID').val(),
+			"RATIO" : $('#ratio').val(),
+			"CHECK" : "SAVE"
+		}
+		,success : function(result){
+			result = result.split("^");
+			alert("유저[id:"+result[0]+" / 이름:"+result[1]+"]의 승률이 ["+result[2]+"%]으로 설정되었습니다.")
+
+		},error :function(e){
+			alert(e)
+		}
+	})
+}
+
+
+</script>
+</head>
+<body>
+	<h1>관리자페이지</h1>
+	<form action="/adminPage" id="admin" method="POST">
+		<label>ID : <input type="text" name="ID" id="ID" placeholder="ID 를 입력해주세요."></label><br />
+		<input type="button" value="사용자확인" onclick="check()">
+		<label>확률조작on/off : <input type="text" name="MANI" id="mani" ></label><br />
+		<input type="button" value="조작저장" onclick="manicheck()">
+		<label>승률 : <input type="text" name="RATIO" id="ratio" ></label><br />
+		<input type="button" value="승률저장" onclick="save()">
+		<a href="/index.html" class="newUserbtn">홈으로 돌아가기</a>
+	</form>
+</body>
+</html>

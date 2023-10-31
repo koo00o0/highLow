@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [04/Aug/2023:18:45:14 +0900] "GET /resources/images/video/video01.mov HTTP/1.1" 206 79233024
+0:0:0:0:0:0:0:1 - - [04/Aug/2023:18:45:14 +0900] "GET /resources/images/video/video01.mov HTTP/1.1" 206 25872381

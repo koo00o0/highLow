@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.project.harubang.reply.ReplyMapper">
+  	
+  	<insert id = "replyWrite">
+  		insert into hb_comment (cseq, seq, id, ccontent) SELECT IFNULL(MAX(cseq), 0)+1, #{seq}, #{id}, #{ccontent} FROM hb_comment;
+  	</insert>
+  	
+	<delete id="replyDelete">
+		delete from hb_comment where seq = #{seq} and cseq = #{cseq};
+	</delete>
+  	
+  	<select id="replyList" parameterType="com.project.harubang.reply.ReplyVO" resultType="com.project.harubang.reply.ReplyVO">
+  		select * from hb_comment
+  		where seq = #{seq};
+  	</select>
+  	
+  </mapper>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.harubang.schedule.scheduleMapper">
+
+	<resultMap type="com.project.harubang.schedule.scheduleDTO" id = "scheduleMap">	
+			<id property="itemId" column="itemId" />
+			<id property="itemName" column="itemName" />
+			<id property="addressId" column="addressId" />
+			<id property="checkId" column="checkId" />
+			<id property="likeCnt" column="likeCnt" />
+			<id property="imgfile" column="imgfile" />
+			<id property="detail" column="detail" />
+			<id property="sort" column="sort" />
+	</resultMap>
+	
+	<resultMap type="com.project.harubang.schedule.scheduleAddressDTO" id = "scheduleAddressMap">
+			<id property="addressId" column="addressId" />
+			<id property="addressName" column="addressName" />
+			<id property="latitude" column="latitude" />
+			<id property="longitude" column="longitude" />
+	</resultMap>
+	
+	<resultMap type="com.project.harubang.schedule.scheduleAddDTO" id = "scheduleAddMap">
+			<id property="scheduleNumber" column="scheduleNumber" />
+			<id property="id" column="id" />
+			<id property="scheduleName" column="scheduleName" />
+			<id property="detailSchedule" column="detailSchedule" />
+	</resultMap>
+	
+	<resultMap type="com.project.harubang.schedule.scheduleResultVO" id="scheduleResultVO">
+			<collection property="scheduleDTO" resultMap="scheduleMap"></collection>
+			<collection property="scheduleAddressDTO" resultMap="scheduleAddressMap"></collection>
+	</resultMap>
+
+	<select id="scheduleList" resultMap="scheduleResultVO">
+		(SELECT * FROM hb_travel, hb_address 
+		WHERE hb_travel.addressId = hb_address.addressId ORDER BY RAND() LIMIT 15) 
+		UNION 
+		(SELECT * FROM hb_hotel, hb_address 
+		WHERE hb_hotel.addressId = hb_address.addressId ORDER BY RAND() LIMIT 30)
+		UNION 
+		(SELECT * FROM hb_food, hb_address 
+		WHERE hb_food.addressId = hb_address.addressId ORDER BY RAND() LIMIT 15)
+	</select>
+	
+	<select id="showMapValue" resultMap="scheduleResultVO">
+		(SELECT * FROM hb_travel, hb_address 
+		WHERE hb_travel.addressId = hb_address.addressId and itemId=#{id}) 
+		UNION 
+		(SELECT * FROM hb_hotel, hb_address 
+		WHERE hb_hotel.addressId = hb_address.addressId and itemId=#{id})
+		UNION 
+		(SELECT * FROM hb_food, hb_address 
+		WHERE hb_food.addressId = hb_address.addressId and itemId=#{id})
+	</select>
+	
+	<select id="searchKeyWord" resultMap="scheduleResultVO">
+		SELECT * FROM hb_travel, hb_address 
+		WHERE hb_travel.addressId = hb_address.addressId and itemName LIKE CONCAT('%', #{keyword}, '%')
+		UNION 
+		(SELECT * FROM hb_hotel, hb_address 
+		WHERE hb_hotel.addressId = hb_address.addressId and itemName LIKE CONCAT('%', #{keyword}, '%'))
+		UNION 
+		(SELECT * FROM hb_food, hb_address 
+		WHERE hb_food.addressId = hb_address.addressId and itemName LIKE CONCAT('%', #{keyword}, '%'))
+	</select>
+	
+	<insert id="AddSchedule">
+		INSERT INTO HB_SCHEDULE (ID, scheduleName, detailSchedule)
+		VALUES(#{id},#{scheduleName},#{detailSchedule})
+	</insert>
+	
+	<select id="myScheduleList" resultMap="scheduleAddMap">
+		SELECT * FROM hb_schedule WHERE id=#{id}
+	</select>
+	
+	<select id="myDetailSchedule" resultMap="scheduleAddMap"  parameterType="map">
+		SELECT * FROM hb_schedule WHERE id=#{id} AND scheduleNumber=#{scheduleNumber}
+	</select>
+	
+	
+	
+</mapper> 

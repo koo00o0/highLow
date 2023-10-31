@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script >
+alert("하이");
+function check() {
+	alert("12312455");
+	if($("#id").val()==""){
+		alert("id를 적어주세요");
+		$("#id").focus();
+		return;
+	}
+	if($("#pw").val()==""){
+		alert("pw를 적어주세요");
+		$("#pw").focus();
+		return;
+	}
+	var f = $('#loginform');
+		f.submit(); 
+}
+
+</script>
+</head>
+
+
+<body>
+<form action="/main" method="POST" id="loginform">
+	<label>ID : <input type="text" name= "id" id="id" placeholder="ID를 입력해주세요"></label><br>
+	<label>PW : <input type="text" name= "pw" id="pw" placeholder="pw를 입력해주세요"></label><br>
+	<input type="button"  id="login"  onclick="check()" value="로그인">
+</form>
+</body>
+</html>
